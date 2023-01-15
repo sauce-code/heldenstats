@@ -1,0 +1,26 @@
+HeldenStats transforms logfiles of CounterStrike into a detailled statistic, I first wrote for my LAN parties to
+have some stats, which can be a lot of fun. But after I saw the interest of some people, I included new features and
+at sometime made it available to the public, which was my first programming success, as I realized from the feedback.
+
+Compiling for Windows(MSVC):
+1. 	Set up Trolltech's QT Library correctly ( get it from www.trolltech.com)
+	I used version 2.30 and i haven't tried the version so far, let me know if it still works :)
+2.	Create a new Console Project
+3.	Unzip the Content of the source zip archive into the directory of your newly created project
+4.	Link the following 2 libraries to your project : qtmain.lib and qt-mt230nc.lib(may have another name in newer versions)
+5.	Be sure to set up your QT include directories or your compiler won't find the header files in my case : $(QTDIR)\include
+6.	Define the following preprocessor directives : WIN32,_DEBUG,_WINDOWS,_MBCS,QT_DLL,UNICODE,QT_THREAD_SUPPORT
+7.	Compile HeldenStats and pray to God that it works ;)
+8.	You will get some warning of this type:
+	warning C4786: 'std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >::vector<std::basi
+	c_string<char,std::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >' : Bezeichner wurde auf '255' Zeichen in den Fehlerinformationen verkürzt
+	warning C4786: 'std::vector<std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > >,std::allocator<std::vector<std::basic_string<char,st
+	d::char_traits<char>,std::allocator<char> >,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char> > > > > >' : Bezeichner wurde auf '255' Zeichen in den Fehlerinformationen verkürzt
+	
+	You can ignore them or write 
+	#ifdef _MSC_VER
+	#   pragma warning(disable:4786)
+	#endif
+
+Compiling for Linux(kDevelop):
+First you need QT 2.3 or higher to compile, then create a new qt project and add the files from the archive, then try to compile.

@@ -19,9 +19,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
-#include <qmessagebox.h>
+#include <QMessageBox>
+//#include <qmessagebox.h>
 
 class MyException
 {
@@ -35,7 +36,7 @@ public :
 	void Message()
 	{
 		if(Meldung)
-			cout << Meldung;
+			std::cerr << Meldung;
 	}
 	void QtMessage()
 	{

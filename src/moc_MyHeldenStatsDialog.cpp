@@ -1,22 +1,23 @@
 /****************************************************************************
-** HeldenStats meta object code from reading C++ file 'HeldenStatsDialog.hpp'
+** MyHeldenStats meta object code from reading C++ file 'MyHeldenStatsDialog.hpp'
 **
-** Created: Sat Oct 27 18:40:09 2001
+** Created: Sat Oct 27 18:40:10 2001
 **      by: The Qt MOC ($Id: //depot/qt/main/src/moc/moc.y#178 $)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#define Q_MOC_HeldenStats
+#define Q_MOC_MyHeldenStats
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #define Q_MOC_OUTPUT_REVISION 8
 #elif Q_MOC_OUTPUT_REVISION != 8
 #error "Moc format conflict - please regenerate all moc files"
 #endif
 
-#include "HeldenStatsDialog.hpp"
-#include <qmetaobject.h>
-#include <qapplication.h>
+#include "MyHeldenStatsDialog.hpp"
+
+#include <QMetaObject>
+#include <QApplication>
 
 #if defined(Q_SPARCWORKS_FUNCP_BUG)
 #define Q_AMPERSAND
@@ -25,68 +26,68 @@
 #endif
 
 
-const char *HeldenStats::className() const
+const char *MyHeldenStats::className() const
 {
-    return "HeldenStats";
+    return "MyHeldenStats";
 }
 
-QMetaObject *HeldenStats::metaObj = 0;
+QMetaObject *MyHeldenStats::metaObj = 0;
 
-void HeldenStats::initMetaObject()
+void MyHeldenStats::initMetaObject()
 {
     if ( metaObj )
 	return;
-    if ( strcmp(QDialog::className(), "QDialog") != 0 )
-	badSuperclassWarning("HeldenStats","QDialog");
+    if ( strcmp(HeldenStats::className(), "HeldenStats") != 0 )
+	badSuperclassWarning("MyHeldenStats","HeldenStats");
     (void) staticMetaObject();
 }
 
 #ifndef QT_NO_TRANSLATION
-QString HeldenStats::tr(const char* s)
+QString MyHeldenStats::tr(const char* s)
 {
-    return ((QNonBaseApplication*)qApp)->translate("HeldenStats",s);
+    return ((QNonBaseApplication*)qApp)->translate("MyHeldenStats",s);
 }
 
 #endif // QT_NO_TRANSLATION
-QMetaObject* HeldenStats::staticMetaObject()
+QMetaObject* MyHeldenStats::staticMetaObject()
 {
     if ( metaObj )
 	return metaObj;
-    (void) QDialog::staticMetaObject();
+    (void) HeldenStats::staticMetaObject();
 #ifndef QT_NO_PROPERTIES
 #endif // QT_NO_PROPERTIES
-    typedef void(HeldenStats::*m1_t0)();
-    typedef void(HeldenStats::*m1_t1)();
-    typedef void(HeldenStats::*m1_t2)();
-    typedef void(HeldenStats::*m1_t3)();
-    typedef void(HeldenStats::*m1_t4)();
-    typedef void(HeldenStats::*m1_t5)();
-    typedef void(HeldenStats::*m1_t6)();
-    typedef void(HeldenStats::*m1_t7)();
-    typedef void(HeldenStats::*m1_t8)();
-    typedef void(HeldenStats::*m1_t9)();
-    typedef void(HeldenStats::*m1_t10)();
-    typedef void(HeldenStats::*m1_t11)();
-    typedef void(HeldenStats::*m1_t12)();
-    typedef void(HeldenStats::*m1_t13)();
-    typedef void(HeldenStats::*m1_t14)();
-    typedef void(HeldenStats::*m1_t15)();
-    m1_t0 v1_0 = Q_AMPERSAND HeldenStats::Combine;
-    m1_t1 v1_1 = Q_AMPERSAND HeldenStats::CreateHTML;
-    m1_t2 v1_2 = Q_AMPERSAND HeldenStats::DelFiles;
-    m1_t3 v1_3 = Q_AMPERSAND HeldenStats::DeleteAllNameTags;
-    m1_t4 v1_4 = Q_AMPERSAND HeldenStats::DeleteCombinedPlayers;
-    m1_t5 v1_5 = Q_AMPERSAND HeldenStats::DeleteNameTag;
-    m1_t6 v1_6 = Q_AMPERSAND HeldenStats::NewNameTag;
-    m1_t7 v1_7 = Q_AMPERSAND HeldenStats::ResetColors;
-    m1_t8 v1_8 = Q_AMPERSAND HeldenStats::SaveColors;
-    m1_t9 v1_9 = Q_AMPERSAND HeldenStats::SaveNameTags;
-    m1_t10 v1_10 = Q_AMPERSAND HeldenStats::SavePlayers;
-    m1_t11 v1_11 = Q_AMPERSAND HeldenStats::SelectLogDir;
-    m1_t12 v1_12 = Q_AMPERSAND HeldenStats::SelectLogFiles;
-    m1_t13 v1_13 = Q_AMPERSAND HeldenStats::SelectOutputDir;
-    m1_t14 v1_14 = Q_AMPERSAND HeldenStats::TimerEnabled;
-    m1_t15 v1_15 = Q_AMPERSAND HeldenStats::ClearCombinedPlayers;
+    typedef void(MyHeldenStats::*m1_t0)();
+    typedef void(MyHeldenStats::*m1_t1)();
+    typedef void(MyHeldenStats::*m1_t2)();
+    typedef void(MyHeldenStats::*m1_t3)();
+    typedef void(MyHeldenStats::*m1_t4)();
+    typedef void(MyHeldenStats::*m1_t5)();
+    typedef void(MyHeldenStats::*m1_t6)();
+    typedef void(MyHeldenStats::*m1_t7)();
+    typedef void(MyHeldenStats::*m1_t8)();
+    typedef void(MyHeldenStats::*m1_t9)();
+    typedef void(MyHeldenStats::*m1_t10)();
+    typedef void(MyHeldenStats::*m1_t11)();
+    typedef void(MyHeldenStats::*m1_t12)();
+    typedef void(MyHeldenStats::*m1_t13)();
+    typedef void(MyHeldenStats::*m1_t14)();
+    typedef void(MyHeldenStats::*m1_t15)();
+    m1_t0 v1_0 = Q_AMPERSAND MyHeldenStats::Combine;
+    m1_t1 v1_1 = Q_AMPERSAND MyHeldenStats::CreateHTML;
+    m1_t2 v1_2 = Q_AMPERSAND MyHeldenStats::DelFiles;
+    m1_t3 v1_3 = Q_AMPERSAND MyHeldenStats::DeleteAllNameTags;
+    m1_t4 v1_4 = Q_AMPERSAND MyHeldenStats::DeleteCombinedPlayers;
+    m1_t5 v1_5 = Q_AMPERSAND MyHeldenStats::DeleteNameTag;
+    m1_t6 v1_6 = Q_AMPERSAND MyHeldenStats::NewNameTag;
+    m1_t7 v1_7 = Q_AMPERSAND MyHeldenStats::ResetColors;
+    m1_t8 v1_8 = Q_AMPERSAND MyHeldenStats::SaveColors;
+    m1_t9 v1_9 = Q_AMPERSAND MyHeldenStats::SaveNameTags;
+    m1_t10 v1_10 = Q_AMPERSAND MyHeldenStats::SavePlayers;
+    m1_t11 v1_11 = Q_AMPERSAND MyHeldenStats::SelectLogDir;
+    m1_t12 v1_12 = Q_AMPERSAND MyHeldenStats::SelectLogFiles;
+    m1_t13 v1_13 = Q_AMPERSAND MyHeldenStats::SelectOutputDir;
+    m1_t14 v1_14 = Q_AMPERSAND MyHeldenStats::TimerEnabled;
+    m1_t15 v1_15 = Q_AMPERSAND MyHeldenStats::ClearCombinedPlayers;
     QMetaData *slot_tbl = QMetaObject::new_metadata(16);
     QMetaData::Access *slot_tbl_access = QMetaObject::new_metaaccess(16);
     slot_tbl[0].name = "Combine()";
@@ -138,7 +139,7 @@ QMetaObject* HeldenStats::staticMetaObject()
     slot_tbl[15].ptr = *((QMember*)&v1_15);
     slot_tbl_access[15] = QMetaData::Public;
     metaObj = QMetaObject::new_metaobject(
-	"HeldenStats", "QDialog",
+	"MyHeldenStats", "HeldenStats",
 	slot_tbl, 16,
 	0, 0,
 #ifndef QT_NO_PROPERTIES

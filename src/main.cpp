@@ -19,10 +19,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#include <qapplication.h>
+
 #include "MyHeldenStatsDialog.hpp"
-#include <qfiledialog.h>
+
 #include <string>
+
+#include <QFileDialog>
+#include <QApplication>
 
 using std::string;
 
@@ -42,7 +45,7 @@ int main( int argc, char **argv )
 	
 	if(argc >= 4)
 	{	
-		//Optionen rausfiltern und übergeben
+		//Optionen rausfiltern und ï¿½bergeben
 		//H = Hide
 		//E = Exit
 		//M = Messages
@@ -60,7 +63,7 @@ int main( int argc, char **argv )
 		}	
 		MainWindow.SetOptions(Exit, Messages);
 		
-		//Das OutputVerzeichnis übergeben
+		//Das OutputVerzeichnis ï¿½bergeben
 		char Output[200];
 		
 		strcpy(Output, argv[2]);
@@ -69,7 +72,7 @@ int main( int argc, char **argv )
 			
 		MainWindow.SetOutputDir(Output);			
 		
-		//Die Logdateien/Verzeichnisse übergeben
+		//Die Logdateien/Verzeichnisse ï¿½bergeben
 		string Temp;
 		for(z = 3; z < argc; z++)
 		{
@@ -83,7 +86,7 @@ int main( int argc, char **argv )
 				}
 			#endif
 			Temp += argv[z];
-			//wenn es ein Verzeichnis ist, überprüfen ob ein / am Ende ist
+			//wenn es ein Verzeichnis ist, ï¿½berprï¿½fen ob ein / am Ende ist
 			if(argv[z][strlen(argv[z]) - 4] != '.')
 				if(argv[z][strlen(argv[z]) - 1] != '/' && argv[z][strlen(argv[z]) - 1] != '\\')
 					Temp += '/';

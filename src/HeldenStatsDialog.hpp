@@ -9,9 +9,26 @@
 #ifndef HELDENSTATS_H
 #define HELDENSTATS_H
 
+/*
 #include <qvariant.h>
 #include <qdialog.h>
-class QVBoxLayout; 
+*/
+#include <QVariant>
+#include <QDialog>
+#include <QTabWidget>
+#include <Q3GroupBox>
+#include <Q3ListBox>
+#include <Q3ProgressBar>
+#include <QLabel>
+#include <QLineEdit>
+#include <Q3ListBox>
+#include <Q3ListBoxItem>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QWidget>
+#include <QEvent>
+/*class QVBoxLayout;
+class QDialog;
 class QHBoxLayout; 
 class QGridLayout; 
 class QCheckBox;
@@ -24,6 +41,7 @@ class QProgressBar;
 class QPushButton;
 class QTabWidget;
 class QWidget;
+class WFlags;*/
 
 class HeldenStats : public QDialog
 { 

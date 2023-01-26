@@ -8,19 +8,34 @@
 ****************************************************************************/
 #include "HeldenStatsDialog.hpp"
 
+/*
 #include <qcheckbox.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qlistbox.h>
-#include <qprogressbar.h>
+#include <q3listbox.h>
+#include <q3progressbar.h>
 #include <qpushbutton.h>
 #include <qtabwidget.h>
 #include <qwidget.h>
 #include <qlayout.h>
 #include <qvariant.h>
 #include <qtooltip.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+*/
+#include <QCheckBox>
+#include <Q3GroupBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <Q3ListBox>
+#include <Q3ProgressBar>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QWidget>
+#include <QLayout>
+#include <QVariant>
+#include <QToolTip>
+#include <Q3WhatsThis>
 
 /* 
  *  Constructs a HeldenStats which is a child of 'parent', with the 

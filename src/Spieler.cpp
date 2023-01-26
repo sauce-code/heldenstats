@@ -20,15 +20,17 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
 #include "Spieler.hpp"
-#include <string.h>
 #include "Exception.cpp"
+
+#include <string.h>
 #include <stdio.h>
 #include <algorithm>
-#include <qfile.h>
-#include <qstring.h>
-#include <qdir.h>
 #include <vector>
 #include <math.h>
+
+#include <QFile>
+#include <QString>
+#include <qdir.h>
 
 #ifndef SPIELER_CPP
 
@@ -46,8 +48,8 @@ void FileCopy(char *OutName, char *InName);
 <head><title>CSStats</title></head>
 
 <frameset rows=\"20%,80%\">
-<frame src=\"¿Titel.html\" name=\"Titel\">
-<frame src=\"¿Spieler.html\" name=\"Haupt\">
+<frame src=\"ï¿½Titel.html\" name=\"Titel\">
+<frame src=\"ï¿½Spieler.html\" name=\"Haupt\">
 </frameset>
 </html>
 ";
@@ -56,8 +58,8 @@ char TitelDatei[] =
 "<html>
 <head></head>
 <body>
-<a href=\"¿Spieler.html\" target=\"Haupt\">Spielerstatistiken</a>
-<a href=\"¿Awards.html\" target=\"Haupt\">Awards</a>
+<a href=\"ï¿½Spieler.html\" target=\"Haupt\">Spielerstatistiken</a>
+<a href=\"ï¿½Awards.html\" target=\"Haupt\">Awards</a>
 </body>
 </html>
 ";*/
@@ -160,39 +162,39 @@ AKTIONEN Aktionen[] =
 {
 {"Kill", 0, "Kills", true, 0, 5},
 {"Deaths", 1, "Deaths", true, 0, 6},
-{"KilledCT", 2, "Counter getötet", true, 0, 17},
-{"KilledTS", 3, "Terroristen getötet", true, 0, 9},
+{"KilledCT", 2, "Counter getï¿½tet", true, 0, 17},
+{"KilledTS", 3, "Terroristen getï¿½tet", true, 0, 9},
 {"Spawned_With_The_Bomb", 4, "Mit der Bombe gestartet", true, 0, 17},
 {"Dropped_The_Bomb", 5, "Bombe verloren", true, 0, 18},
 {"Got_The_Bomb", 6, "Bombe aufgesammelt", true, 0, 17},
 {"Planted_The_Bomb", 7, "Bombe gelegt", true, 2, 17},
-{"Begin_Bomb_Defuse_Without_Kit", 8, "Entschärfungsversuche ohne Kit", true, 2, 9},
-{"Begin_Bomb_Defuse_With_Kit", 9, "Entschärfungsversuche mit Kit", true, 2, 9},
-{"Defused_The_Bomb", 10, "Bombe entschärft", true, 3, 9},
+{"Begin_Bomb_Defuse_Without_Kit", 8, "Entschï¿½rfungsversuche ohne Kit", true, 2, 9},
+{"Begin_Bomb_Defuse_With_Kit", 9, "Entschï¿½rfungsversuche mit Kit", true, 2, 9},
+{"Defused_The_Bomb", 10, "Bombe entschï¿½rft", true, 3, 9},
 {"TargetBombed", 11, "Bombe explodiert", true, 3, 17},
 {"TargetNotBombed", 12, "Bombe nicht explodiert", true, -2, 18},
-{"Touched_A_Hostage", 13, "Geisel berührt", true, 2, 9},
-{"Killed_A_Hostage", 14, "Geisel getötet", true, -3, 6},
+{"Touched_A_Hostage", 13, "Geisel berï¿½hrt", true, 2, 9},
+{"Killed_A_Hostage", 14, "Geisel getï¿½tet", true, -3, 6},
 {"Rescued_A_Hostage", 15, "Geisel gerettet", true, 2, 9},
 {"Became_VIP", 16, "Als VIP gestartet", true, 0, 9},
-{"Assassinated_The_VIP", 17, "VIP getötet", true, 3, 17},
+{"Assassinated_The_VIP", 17, "VIP getï¿½tet", true, 3, 17},
 {"Escaped_As_VIP", 18, "Als VIP entkommen", true, 3, 9},
 {"TERRORIST", 19, "Terroristen beigetreten", true, 0, 17},
 {"CT", 20, "Antiterroristen beigetreten", true, 0, 9},
 {"KillStreak", 21, "Kills hintereinander ohne sterben", false, 0, 5},
 {"DeathsStreak", 22, "Deaths hintereinander ohne Kills", false, 0, 6},
-{"RoundSurvived", 23, "Runden überlebt", false, 0, 5},
+{"RoundSurvived", 23, "Runden ï¿½berlebt", false, 0, 5},
 {"NewRound", 24, "Runden gespielt", true, 0, 5},
 {"TK", 25, "TeamKills", true, -4, 6},
 {"WasTKed", 26, "Gestorben durch TeamKills", true, 0, 6},
-{"LastManStanding", 27, "Letzter Überlebender", true, 0, 5},
+{"LastManStanding", 27, "Letzter ï¿½berlebender", true, 0, 5},
 {"Suicide", 28, "Selbstmord", true, 0, 6},
 {"PosAwards", 29, "Positive Auszeichnungen", true, 0, 5},
 {"NegAwards", 30, "Negative Auszeichnungen", true, 0, 6},
 {"CTWin", 31, "Antiterroristen gewonnen", true, 0, 9},
 {"TSWin", 32, "Terroristen gewonnen", true, 0, 17},
 {"DamageHealths", 33, "Lebensenergie abgezogen", true, 0, 5},
-{"DamageArmor", 34, "Rüstung zerstört", true, 0, 5}
+{"DamageArmor", 34, "Rï¿½stung zerstï¿½rt", true, 0, 5}
 } ;
 
 FLOATAKTIONEN FloatAktionen[] =
@@ -203,9 +205,9 @@ FLOATAKTIONEN FloatAktionen[] =
 {"DeathsperMin", 3, "Deaths pro Minute", false, 6},
 {"PlayedTime", 4, "Gespielte Zeit in Minuten", true, 5},
 {"DamageHealthsperKill", 5, "Lebensenergie abgezogen pro Kill", false, 5},
-{"DamageArmorperKill", 6, "Rüstung zerstört pro Kill", false, 5},
+{"DamageArmorperKill", 6, "Rï¿½stung zerstï¿½rt pro Kill", false, 5},
 {"DamageHealthsperRnd", 7, "Lebensenergie abgezogen pro Runde", false, 5},
-{"DamageArmorperRnd", 8, "Rüstung zerstört pro Runde", false, 5}
+{"DamageArmorperRnd", 8, "Rï¿½stung zerstï¿½rt pro Runde", false, 5}
 } ;
 
 
@@ -218,22 +220,22 @@ MAPAKTIONEN MapAktionen[] =
 {"TeamSkill", 0, "TeamSkill", false, 0, 0},
 {"Kill", 1, "Kills", true, 0, 0},
 {"Deaths", 2, "Deaths", true, 0, 0},
-{"KilledCT", 3, "Counter getötet", true, 0, 2},
-{"KilledTS", 4, "Terroristen getötet", true, 0, 1},
+{"KilledCT", 3, "Counter getï¿½tet", true, 0, 2},
+{"KilledTS", 4, "Terroristen getï¿½tet", true, 0, 1},
 {"Planted_The_Bomb", 5, "Bombe gelegt", true, 2, 2},
-{"Begin_Bomb_Defuse_Without_Kit", 6, "Entschärfungsversuche ohne Kit", true, 2, 1},
-{"Begin_Bomb_Defuse_With_Kit", 7, "Entschärfungsversuche mit Kit", true, 2, 1},
-{"Defused_The_Bomb", 8, "Bombe entschärft", true, 3, 1},
+{"Begin_Bomb_Defuse_Without_Kit", 6, "Entschï¿½rfungsversuche ohne Kit", true, 2, 1},
+{"Begin_Bomb_Defuse_With_Kit", 7, "Entschï¿½rfungsversuche mit Kit", true, 2, 1},
+{"Defused_The_Bomb", 8, "Bombe entschï¿½rft", true, 3, 1},
 {"TargetBombed", 9, "Bombe explodiert", true, 3, 2},
 {"TargetNotBombed", 10, "Bombe nicht explodiert", true, -2, 2},
-{"Touched_A_Hostage", 11, "Geisel berührt", true, 2, 1},
-{"Killed_A_Hostage", 12, "Geisel getötet", true, -3, 0},
+{"Touched_A_Hostage", 11, "Geisel berï¿½hrt", true, 2, 1},
+{"Killed_A_Hostage", 12, "Geisel getï¿½tet", true, -3, 0},
 {"Rescued_A_Hostage", 13, "Geisel gerettet", true, 2, 1},
-{"Assassinated_The_VIP", 14, "VIP getötet", true, 3, 2},
+{"Assassinated_The_VIP", 14, "VIP getï¿½tet", true, 3, 2},
 {"Escaped_As_VIP", 15, "Als VIP entkommen", true, 3, 1},
-{"RoundSurvived", 16, "Runden überlebt", false, 0, 0},
+{"RoundSurvived", 16, "Runden ï¿½berlebt", false, 0, 0},
 {"NewRound", 17, "Runden gespielt", true, 0, 0},
-{"LastManStanding", 18, "Letzter Überlebender", true, 0, 0},
+{"LastManStanding", 18, "Letzter ï¿½berlebender", true, 0, 0},
 {"Suicide", 19, "Selbstmord", true, 0, 0},
 {"CTWin", 20, "Antiterroristen gewonnen", true, 0, 1},
 {"TSWin", 21, "Terroristen gewonnen", true, 0, 2}
@@ -262,7 +264,7 @@ Spieler::Spieler()
 
 	//Platz reservieren
 	SortNames.resize(SortCount);
-	//Aktivieren, soll später über eine Option des GUI aktiviert werden können!
+	//Aktivieren, soll spï¿½ter ï¿½ber eine Option des GUI aktiviert werden kï¿½nnen!
 	WriteAwards = true;
 	DeleteUnrankedPeople = 0;
 	AnzahlSpieler = 0;
@@ -283,7 +285,7 @@ Spieler::Spieler()
 	DeathsStreakTmp.resize(ANFANGSNAMEN);
 	Skill.resize(ANFANGSNAMEN);
 	TeamSkill.resize(ANFANGSNAMEN);
-	//SpielerNamen = new string[sizeof(string) * ANFANGSNAMEN]; //ANFANGSNAMEN Strings für !alle! Spieler
+	//SpielerNamen = new string[sizeof(string) * ANFANGSNAMEN]; //ANFANGSNAMEN Strings fï¿½r !alle! Spieler
 	SpielerNamen.resize(ANFANGSNAMEN, "");
 	ReservedSpaceForSpielerNamen = ANFANGSNAMEN;
 	Kills.resize(ANFANGSNAMEN);
@@ -301,7 +303,7 @@ Spieler::Spieler()
 	NumAward.resize(AKTIONENANZAHL);
 	CountofAction.resize(AKTIONENANZAHL);
 
-	//Aktivieren, sol später über GUI aktiviert werden können
+	//Aktivieren, sol spï¿½ter ï¿½ber GUI aktiviert werden kï¿½nnen
 	ShowDamage = 1;
 
 	if(ShowDamage == 1)
@@ -342,11 +344,11 @@ inline int Spieler::WelcherSpieler(const char *Name)
 	
 	strcpy(AliasName, Name);
 	int z;
-	//Überprüft ob Spieler zusammen gefügt werden müssen und liefert dann den Index
+	//ï¿½berprï¿½ft ob Spieler zusammen gefï¿½gt werden mï¿½ssen und liefert dann den Index
 	for(z = 0; z < CombineCount; z++)
 		if(JoinPlayers[z] == AliasName)
 			strcpy(AliasName, BasePlayers[z].c_str());		
-	//Sucht nach dem Namen und liefert den Index zurück
+	//Sucht nach dem Namen und liefert den Index zurï¿½ck
 	for(z = 0; z < AnzahlSpieler; z++)
 		if(strcmp(SpielerNamen[z].c_str(), AliasName) == 0)
 			return z;
@@ -364,7 +366,7 @@ inline int Spieler::NeuerSpieler(const char *Name)
 	{
 		if(Name[z] == '*' || Name[z] == '|' || Name[z] == '<' || Name[z] == '>' || Name[z] == '\\' || Name[z] == '/' || Name[z] == '?' || Name[z] == ':' || Name[z] == '\"')
 		{
-			Name[z] = 'ø';
+			Name[z] = 'ï¿½';
 		}
 	}*/
 
@@ -393,32 +395,32 @@ void Spieler::ReserveNewSpaceForSpielerNamen()
 	//Platz f+r SpielerNamen reservieren
 	SpielerNamen.resize(ReservedSpaceForSpielerNamen, "");
 
-	//Platz für KDRate reservieren
+	//Platz fï¿½r KDRate reservieren
 	KDRate.resize(ReservedSpaceForSpielerNamen);	
 
-	//Platz für Sortierung reservieren
+	//Platz fï¿½r Sortierung reservieren
 //	Sortierung.resize(ReservedSpaceForSpielerNamen);	
 
-	//Platz für Actions reservieren
+	//Platz fï¿½r Actions reservieren
 	Actions.resize(ReservedSpaceForSpielerNamen);	
-	//Platz für Skill reservieren
+	//Platz fï¿½r Skill reservieren
 	Skill.resize(ReservedSpaceForSpielerNamen);
-	//Platz für TeamSkill reservieren
+	//Platz fï¿½r TeamSkill reservieren
 	TeamSkill.resize(ReservedSpaceForSpielerNamen);
-	//Platz für Kills reservieren
+	//Platz fï¿½r Kills reservieren
 	Kills.resize(ReservedSpaceForSpielerNamen);
-	//Platz für Deaths reservieren
+	//Platz fï¿½r Deaths reservieren
 	Deaths.resize(ReservedSpaceForSpielerNamen);	
-	//Platz für FloatActions reservieren
+	//Platz fï¿½r FloatActions reservieren
 	FloatActions.resize(ReservedSpaceForSpielerNamen);	
-	//Platz für PlayedTime reservieren
+	//Platz fï¿½r PlayedTime reservieren
 	PlayedTime.resize(ReservedSpaceForSpielerNamen);	
 
 	if(ShowDamage == 1)
 	{
-		//Platz für DamageHealths reservieren
+		//Platz fï¿½r DamageHealths reservieren
 		DamageHealths.resize(ReservedSpaceForSpielerNamen);	
-		//Platz für DamageArmor reservieren
+		//Platz fï¿½r DamageArmor reservieren
 		DamageArmor.resize(ReservedSpaceForSpielerNamen);	
 	}
 		
@@ -427,7 +429,7 @@ void Spieler::ReserveNewSpaceForSpielerNamen()
 		PvsPCount.resize(ReservedSpaceForSpielerNamen);
 		PvsPKills.resize(ReservedSpaceForSpielerNamen, vector<int>(MaxPvsPCount));
 		PvsPDeaths.resize(ReservedSpaceForSpielerNamen, vector<int>(MaxPvsPCount));
-		//Hat die Indexe der Gegner(für die Spielernamen)
+		//Hat die Indexe der Gegner(fï¿½r die Spielernamen)
 		PvsPIndex.resize(ReservedSpaceForSpielerNamen, vector<int>(MaxPvsPCount));
   }
 
@@ -465,7 +467,7 @@ void Spieler::ReserveNewSpaceForSpielerNamen()
 		}
 		
 	}
-	//Platz für KillStreakTmp reservieren
+	//Platz fï¿½r KillStreakTmp reservieren
 
 
 
@@ -475,13 +477,13 @@ void Spieler::ReserveNewSpaceForSpielerNamen()
 
 	KillStreakTmp.resize(ReservedSpaceForSpielerNamen);
 
-	//Platz für DeathsStreakTmp reservieren
+	//Platz fï¿½r DeathsStreakTmp reservieren
 	DeathsStreakTmp.resize(ReservedSpaceForSpielerNamen);
 
 	/*for(z = ReservedSpaceForSpielerNamen - NEWSPACE; z < ReservedSpaceForSpielerNamen; z++)
 		Skill[z] = 100;*/
 		
-	//Platz für Rang reservieren
+	//Platz fï¿½r Rang reservieren
 	Rang.resize(ReservedSpaceForSpielerNamen);
 
 }
@@ -518,7 +520,7 @@ void Spieler::NewKills(const char *Killer, const char *Opfer, int KillerTeam, in
 	if(WaffeID == -1)
 	{
 		char Nachricht[500];
-		sprintf(Nachricht, "Die angeforderte Kill-Abfrage konnte nicht bestätigt werden, da die Waffe: %s nicht existiert!", Weapon);
+		sprintf(Nachricht, "Die angeforderte Kill-Abfrage konnte nicht bestï¿½tigt werden, da die Waffe: %s nicht existiert!", Weapon);
 		throw MyException(Nachricht);
 		cout << Weapon << " : Waffe existiert nicht!\n";
 
@@ -573,7 +575,7 @@ void Spieler::NewKills(const char *Killer, const char *Opfer, int KillerTeam, in
 		CountofAction[0] += n;
 		CountofAction[1] += n;/*/
 
-		//Für die PvsPStatistik zuständig
+		//Fï¿½r die PvsPStatistik zustï¿½ndig
 
 		NewPvsPKills(KillerID, OpferID, n);
 
@@ -583,7 +585,7 @@ void Spieler::NewKills(const char *Killer, const char *Opfer, int KillerTeam, in
 			NewAction(Killer, "KilledCT", n);
 			
 		Kills[KillerID][WaffeID] += n;
-		//Killsstreak um n erhöhen
+		//Killsstreak um n erhï¿½hen
 		KillStreakTmp[KillerID] += n;
 		//Deathsstreak auf 0 setzen
 		DeathsStreakTmp[KillerID] = 0;
@@ -628,7 +630,7 @@ void Spieler::NewKills(const char *Killer, const char *Opfer, int KillerTeam, in
 	}
 	//Killstreak auf 0 setzen
 	KillStreakTmp[OpferID] = 0;
-	//Deathsstreak um n erhöhen
+	//Deathsstreak um n erhï¿½hen
 	DeathsStreakTmp[OpferID] += n;
 	if(KillStreakTmp[KillerID] > Actions[KillerID][KillStreakID])
 		Actions[KillerID][KillStreakID] = KillStreakTmp[KillerID];
@@ -659,7 +661,7 @@ int Spieler::GetKills(char *Player, char *Weapon)
 
 	if(WelcherS == -1 || WelcheW == -1)
 	{
-		throw MyException("Die angeforderte Kill-Abfrage konnte nicht bestätigt werden, da der/die Spieler/Waffe nicht existiert!");
+		throw MyException("Die angeforderte Kill-Abfrage konnte nicht bestï¿½tigt werden, da der/die Spieler/Waffe nicht existiert!");
 		return -1;
 
 
@@ -802,8 +804,8 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 		strcpy(Zeichen,  "/");
 
 
-	//Hier werden die Abkürzungen von den Tabellen erstellt, dann muss man nicht bei 
-	//jeder Tabelle etwas ändern, sondern nur hier
+	//Hier werden die Abkï¿½rzungen von den Tabellen erstellt, dann muss man nicht bei 
+	//jeder Tabelle etwas ï¿½ndern, sondern nur hier
 	TableSettings = "";
 	TableSettings = TableSettings + " border=" + FarbNamen[26] + " cellspacing=" + FarbNamen[27] + ""
 		" bgcolor=" + FarbNamen[4] + " bordercolor=" + FarbNamen[25] + " ";
@@ -832,41 +834,41 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 	}
 
 
-	//benötigte Verzeichnisse erstellen
+	//benï¿½tigte Verzeichnisse erstellen
 	sprintf(Path, "%s%sspieler", Pfad, Zeichen );
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Spieler Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Spieler Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 	sprintf(Path, "%s%sweapons", Pfad, Zeichen);
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Weapon Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Weapon Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	sprintf(Path, "%s%simages", Pfad, Zeichen);
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Images Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Images Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	sprintf(Path, "%s%simages/title", Pfad, Zeichen);
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Images/Title Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Images/Title Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	sprintf(Path, "%s%simages/weapons", Pfad, Zeichen);
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Images/Weapon Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Images/Weapon Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	sprintf(Path, "%s%smaps", Pfad, Zeichen);
 	Verzeichnis.setPath(Path);
 	if(!Verzeichnis.exists())
 		if(!Verzeichnis.mkdir(Path, true))
-			throw MyException("Erstellung des Maps Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+			throw MyException("Erstellung des Maps Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	if(WriteAwards)
 
@@ -876,7 +878,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 		if(!Verzeichnis.exists())
 
 			if(!Verzeichnis.mkdir(Path, true))
-				throw MyException("Erstellung des Awards Verzeichnisses fehlgeschlagen, keine Rechte für diesen Ordner?");
+				throw MyException("Erstellung des Awards Verzeichnisses fehlgeschlagen, keine Rechte fï¿½r diesen Ordner?");
 
 	}
 
@@ -915,7 +917,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 			AktuelleWaffe[y] = Kills[y][z];
 		}
 
-		//Most holt liefert den höchten Wert des Vektors zurück und speichert den Namen in Name
+		//Most holt liefert den hï¿½chten Wert des Vektors zurï¿½ck und speichert den Namen in Name
 		char temp[300];
 
 
@@ -989,7 +991,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 
 	}
 
-	//Berechnen wer den Award hat und in FloatAwards[z] schreiben(für Floatawards)
+	//Berechnen wer den Award hat und in FloatAwards[z] schreiben(fï¿½r Floatawards)
 	vector<float> AktuelleFloatAction(AnzahlSpieler);
 	for(z = 0; z < FLOATAKTIONENANZAHL; z++)
 	{
@@ -999,7 +1001,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 		{
 			AktuelleFloatAction[y] = FloatActions[y][z];
 		}
-		//Most holt liefert den höchten Wert des Vektors zurück und speichert den Namen in Name
+		//Most holt liefert den hï¿½chten Wert des Vektors zurï¿½ck und speichert den Namen in Name
 		char temp[300];
 
 		FloatNumAward[z] = Most(AktuelleFloatAction, temp, AnzahlSpieler);
@@ -1007,7 +1009,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 		{
 			FloatPlayerAward[z] = temp;
 
-			//Positive und negative FloatAwards erhöhen
+			//Positive und negative FloatAwards erhï¿½hen
 			if(FloatAktionen[z].Status % 2 != 0)
 				NewAction(temp, "PosAwards", 1);
 			else
@@ -1024,7 +1026,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 		{
 			AktuelleAction[y] = Actions[y][z];
 		}
-		//Most holt liefert den höchten Wert des Vektors zurück und speichert den Namen in Name
+		//Most holt liefert den hï¿½chten Wert des Vektors zurï¿½ck und speichert den Namen in Name
 		char temp[300] = "";
 
 		NumAward[z] = Most(AktuelleAction, temp, AnzahlSpieler);
@@ -1033,7 +1035,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 			PlayerAward[z] = temp;
 
 
-			//Positive und negative Awards erhöhen
+			//Positive und negative Awards erhï¿½hen
 			if(Aktionen[z].Status % 2 != 0)
 				NewAction(temp, "PosAwards", 1);
 			else
@@ -1043,7 +1045,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 				NumAward[z]++;
 		}
 		
-		//Positive und negative Awards zählen
+		//Positive und negative Awards zï¿½hlen
 		/*if(FloatAktionen[z].Status % 2 != 0)
 		{
 			Positiv++;
@@ -1133,7 +1135,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 					//Die Aktionen werden einzeln in die AktuelleMapAction geschrieben
 						AktuelleMapAction[y] = MapActions[i][y][z];
 					}
-					//Most holt liefert den höchten Wert des Vektors zurück und speichert den Namen in Name
+					//Most holt liefert den hï¿½chten Wert des Vektors zurï¿½ck und speichert den Namen in Name
 					char temp[300];
     		
 					if(MapAktionen[z].ShowTotal)
@@ -1169,7 +1171,7 @@ void Spieler::WritePlayerHTML(const char *Pfad, int Logdateien)
 	int NewRoundID = WelcheAktion("NewRound");
 
 	CountofAction[NewRoundID] = InsgRunden;
-	//Insgesamte Ausführung von PlayedTime in FloatCountofAction schreiben
+	//Insgesamte Ausfï¿½hrung von PlayedTime in FloatCountofAction schreiben
 	FloatCountofAction[PlayedTimeID] = InsgSpielZeit / 60.0;
 	
 
@@ -1407,7 +1409,7 @@ inline void Spieler::NewAction(const char *Player, const char *Action, int n)
 	Actions[WelcherS][WelcheA]+=n;
 	CountofAction[WelcheA] +=n;
 
-	//Bei Selbstmord, deaths erhöhen und Skill abziehen!
+	//Bei Selbstmord, deaths erhï¿½hen und Skill abziehen!
 	if(strcmp(Action, "Suicide") == 0)
 	{
 		NewAction(Player, "Deaths", n);
@@ -1437,8 +1439,8 @@ void Spieler::WriteIndexFile(const char *Pfad)
 
 	{
 
-		cout << "Fehler beim öffnen der Index Datei!";
-		throw MyException("Fehler beim öffnen der IndexDatei!");
+		cout << "Fehler beim ï¿½ffnen der Index Datei!";
+		throw MyException("Fehler beim ï¿½ffnen der IndexDatei!");
 	}
 	HTMLDatei.writeBlock(IndexDatei, sizeof(IndexDatei));
 	HTMLDatei.close();
@@ -1454,8 +1456,8 @@ void Spieler::WriteTitelFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		cout << "Fehler beim öffnen der Index Datei!";
-		throw MyException("Fehler beim öffnen der TitelDatei!");
+		cout << "Fehler beim ï¿½ffnen der Index Datei!";
+		throw MyException("Fehler beim ï¿½ffnen der TitelDatei!");
 	}
 	HTMLDatei.writeBlock(TitelDatei.c_str(), TitelDatei.size());
 	HTMLDatei.close();
@@ -1471,8 +1473,8 @@ void Spieler::WriteMapIndexFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		cout << "Fehler beim öffnen der MapIndex Datei!";
-		throw MyException("Fehler beim öffnen der MapDatei!");
+		cout << "Fehler beim ï¿½ffnen der MapIndex Datei!";
+		throw MyException("Fehler beim ï¿½ffnen der MapDatei!");
 	}
 	HTMLDatei.writeBlock(MapIndex, sizeof(MapIndex));
 	HTMLDatei.close();
@@ -1493,8 +1495,8 @@ void Spieler::WriteSpielerFile(const char *Pfad)
 		HTMLDatei.setName(Path);
 		if(!HTMLDatei.open(IO_WriteOnly))
 		{
-			cout << "Fehler beim öffnen der SpielerDatei!";
-			MyException("Fehler beim öffnen der SpielerDatei!");
+			cout << "Fehler beim ï¿½ffnen der SpielerDatei!";
+			MyException("Fehler beim ï¿½ffnen der SpielerDatei!");
 		}
 		WholeFile = "<html><head><title>Counter-Strike Stats</title><link rel=stylesheet type=\"text/css\" href=\"style.css\"></head>";
 		WholeFile = WholeFile + "<body><h1 align=center>Spielerstatistiken</h1><br><table" + TableSettings + "align=center>";
@@ -1527,7 +1529,7 @@ void Spieler::WriteSpielerFile(const char *Pfad)
 				char temp[500];
 				//int Element = z;
 
-				//Farbe wird überall benutzt vor den Einträgen
+				//Farbe wird ï¿½berall benutzt vor den Eintrï¿½gen
 				string Farbe="";
 				Farbe = Farbe + TableFontColor;
 
@@ -1589,7 +1591,7 @@ void Spieler::WriteSpielerFile(const char *Pfad)
 		WholeFile = WholeFile + "<br><br><br><br><center>" + temp0 + "</center>";
 		sprintf(temp0, "Insgesamt %i Spieler, davon %i in der Liste, die Anderen %i waren zu schlecht", RankedPlayers + UnRankedPlayers, RankedPlayers, UnRankedPlayers);
 		WholeFile = WholeFile + "<center>" + temp0 + "</center>";
-		WholeFile = WholeFile + "<center>© Benjamin Held, HeldenStats Ver.:1.04</center></body>";
+		WholeFile = WholeFile + "<center>ï¿½ Benjamin Held, HeldenStats Ver.:1.04</center></body>";
 		char a[100];
 
 		sprintf(a , "%i", WholeFile.size());
@@ -1605,7 +1607,7 @@ void Spieler::WriteSpielerFiles(const char *Pfad)
 	string WholeFile = "";
 
 
-	//Hier werden die einzelnen SpielerDateien geschrieben, für jeden Spieler EINE!
+	//Hier werden die einzelnen SpielerDateien geschrieben, fï¿½r jeden Spieler EINE!
 	for(int z = 0; z < AnzahlSpieler; z++)
 	{
 		int Element = Sortierung[0][z];
@@ -1617,7 +1619,7 @@ void Spieler::WriteSpielerFiles(const char *Pfad)
 			if(!HTMLDatei.open(IO_WriteOnly))
 			{
 				char Nachricht[200];
-				sprintf(Nachricht, "Fehler beim öffnen der Datei : %s", Path);
+				sprintf(Nachricht, "Fehler beim ï¿½ffnen der Datei : %s", Path);
 				throw MyException(Nachricht);
 			}
 			WholeFile = "";
@@ -1639,7 +1641,7 @@ void Spieler::WriteSpielerFiles(const char *Pfad)
 				//"</th><th><font color=" + FarbNamen[5] + ">%"
 				"</th><th>" + TableCaptionColor + "Deaths</i>"
 				"</th><th>" + TableCaptionColor + "Lebensenergie abgezogen</i>"
-				"</th><th>" + TableCaptionColor + "Rüstung abgezogen</i></th></tr>";
+				"</th><th>" + TableCaptionColor + "Rï¿½stung abgezogen</i></th></tr>";
 		
 			//Waffen sortieren!
 			int y;
@@ -1753,8 +1755,8 @@ void Spieler::WriteSpielerFiles(const char *Pfad)
 				WholeFile = WholeFile + "<table" + TableSettings + "align=center>";
 				WholeFile = WholeFile + "<tr bgcolor=" + FarbNamen[3] + ">"
 					"<th>" + TableCaptionColor + "Name</th></font>"
-					"<th>" + TableCaptionColor + "Sie töteten Ihn</font></th>"
-					"<th>" + TableCaptionColor + "Er tötete Sie</font></th>"
+					"<th>" + TableCaptionColor + "Sie tï¿½teten Ihn</font></th>"
+					"<th>" + TableCaptionColor + "Er tï¿½tete Sie</font></th>"
 					"<th>" + TableCaptionColor + "KDRate</font></th></tr>";
 				
 				for(int i = 0; i < PvsPCount[Element]; i++)
@@ -1811,7 +1813,7 @@ void Spieler::WriteWeaponFiles(const char *Pfad)
 		if(!HTMLDatei.open(IO_WriteOnly))
 		{
 			char Nachricht[200];
-			sprintf(Nachricht, "Fehler beim öffnen der Datei : %s", Path);
+			sprintf(Nachricht, "Fehler beim ï¿½ffnen der Datei : %s", Path);
 			throw MyException(Nachricht);
 		}
 		WholeFile = "";
@@ -1888,7 +1890,7 @@ void Spieler::WriteAwardsFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		throw MyException("Fehler beim öffnen der AwardsDatei!");
+		throw MyException("Fehler beim ï¿½ffnen der AwardsDatei!");
 	}
 	WholeFile = "";
 	WholeFile = WholeFile + "<html>" + "<head><link rel=stylesheet type=\"text/css\" href=\"style.css\"></head>" + "<body>"; 
@@ -1937,7 +1939,7 @@ void Spieler::WriteAwardsFile(const char *Pfad)
 					}
 					else
 						sprintf(InsgString, "---");
-					//Wenn noch keiner diese Aktion ausgeführt hat
+					//Wenn noch keiner diese Aktion ausgefï¿½hrt hat
 					if(NumAward[z] <= 0)
 					{
 						strcpy(temp2, "---"); 
@@ -1994,7 +1996,7 @@ void Spieler::WriteAwardsFile(const char *Pfad)
 					}
 					else
 						sprintf(InsgString, "---");
-					//Wenn noch keiner diese Aktion ausgeführt hat
+					//Wenn noch keiner diese Aktion ausgefï¿½hrt hat
 					if(FloatNumAward[z] <= 0)
 					{
 						strcpy(temp2, "---"); 
@@ -2059,14 +2061,14 @@ void Spieler::WriteMapLinksFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		throw MyException("Fehler beim öffnen der MapLinksDatei!");
+		throw MyException("Fehler beim ï¿½ffnen der MapLinksDatei!");
 	}
 	WholeFile = WholeFile + "<html>" + "<head>"
 		"<link rel=stylesheet type=\"text/css\" href=\"style.css\"></head><body>";
 
 	WholeFile = WholeFile + "<center>Maps</center><br>";
 
-	WholeFile = WholeFile + "<center><a href=\"mapoverview.html\" target=\"HauptFenster\">Übersicht</a></center><br>";
+	WholeFile = WholeFile + "<center><a href=\"mapoverview.html\" target=\"HauptFenster\">ï¿½bersicht</a></center><br>";
 	for(int z = 0; z < MapCount; z++)
 	{
 		char Anzeige[300];
@@ -2092,7 +2094,7 @@ void Spieler::WriteNoMaps(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		throw MyException("Fehler beim öffnen der weaponDatei!");
+		throw MyException("Fehler beim ï¿½ffnen der weaponDatei!");
 	}
 	WholeFile = WholeFile + "<html>" + "<head><title>Keine Mapstatistiken</title>"
 		"<link rel=stylesheet type=\"text/css\" href=\"style.css\"></head><body>";
@@ -2115,7 +2117,7 @@ void Spieler::WriteWeaponFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		throw MyException("Fehler beim öffnen der weaponDatei!");
+		throw MyException("Fehler beim ï¿½ffnen der weaponDatei!");
 	}
 	WholeFile = WholeFile + "<html>" + "<head><title>Waffen</title>"
 		"<link rel=stylesheet type=\"text/css\" href=\"style.css\"></head><body>";
@@ -2130,7 +2132,7 @@ void Spieler::WriteWeaponFile(const char *Pfad)
 		"</th><th>" + TableCaptionColor + "Am Meisten</font>"
 		"</th><th>" + TableCaptionColor + "% von der Waffe</font>"
 		"</th><th>" + TableCaptionColor + "Spieler</font></th></tr>";
-	//Ist für die Sortierung zuständig
+	//Ist fï¿½r die Sortierung zustï¿½ndig
 /*	vector<int> WaffenKills(WEAPONANZAHL);
 	WaffenKills.resize(WEAPONANZAHL);
 	for(int z = 0; z < WEAPONANZAHL; z++)
@@ -2149,12 +2151,12 @@ void Spieler::WriteWeaponFile(const char *Pfad)
 		int Element = WaffenSortierung[z];		
 		char temp[100], temp2[100], temp3[200], temp4[200], MostKillsName[100];
 
-		//Zählt die insgesamten Kills der Waffe
+		//Zï¿½hlt die insgesamten Kills der Waffe
 		int MaxKills=0;
 		for(int y = 0; y < AnzahlSpieler; y++)
 			if(Kills[y][Element] > 0)
 				MaxKills += Kills[y][Element];
-		//Überprüft ob ein Kill mit der Waffe gemacht wurde!
+		//ï¿½berprï¿½ft ob ein Kill mit der Waffe gemacht wurde!
 		//Wenn nicht dann wird "Kein Kill" angezeigt
 		char TextFarbe[100];
 
@@ -2236,13 +2238,13 @@ void Spieler::WriteMapOverViewFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		cout << "Fehler beim öffnen der CSSDatei!";
-		throw MyException("Fehler beim öffnen der CSSDatei!");
+		cout << "Fehler beim ï¿½ffnen der CSSDatei!";
+		throw MyException("Fehler beim ï¿½ffnen der CSSDatei!");
 	}
 	WholeFile = WholeFile + "<html>" + "<head><title>Waffen</title>"
 		"<link rel=stylesheet type=\"text/css\" href=\"style.css\"></head><body>";
 
-	WholeFile = WholeFile + "<h1 align=center>Übersicht</h1>";
+	WholeFile = WholeFile + "<h1 align=center>ï¿½bersicht</h1>";
 	WholeFile = WholeFile + "<center><h3>Folgende Maps wurden gespielt :<br><br>";
 
 	for(int z = 0; z < MapCount; z++)
@@ -2252,7 +2254,7 @@ void Spieler::WriteMapOverViewFile(const char *Pfad)
 
 		sprintf(Spielzeit, "%i", MapPlayedTime[z]);
 		
-		//Prüfen ob der Spieler geranked ist, wenn ja dann mit Link schreiben sonst ohne
+		//Prï¿½fen ob der Spieler geranked ist, wenn ja dann mit Link schreiben sonst ohne
 		if(IsRanked(MapAwardsPlayer[z][0].c_str()))
 			sprintf(TeamSpieler, "<a href=\"spieler/%i.html\" target=\"Haupt\">%s</a>", Rang[Index], MapAwardsPlayer[z][0].c_str());
 		else
@@ -2278,8 +2280,8 @@ void Spieler::WriteCSSFile(const char *Pfad)
 	HTMLDatei.setName(Path);
 	if(!HTMLDatei.open(IO_WriteOnly))
 	{
-		cout << "Fehler beim öffnen der CSSDatei!";
-		throw MyException("Fehler beim öffnen der CSSDatei!");
+		cout << "Fehler beim ï¿½ffnen der CSSDatei!";
+		throw MyException("Fehler beim ï¿½ffnen der CSSDatei!");
 	}
 	
 	WholeFile = WholeFile + "body  { background-color:" + FarbNamen[2] + ""
@@ -2321,14 +2323,14 @@ void Spieler::WriteAwardFiles(const char *Pfad)
 			char Nachricht[300];
 
 
-			sprintf(Nachricht, "Fehler beim öffnen von %s", Path);
+			sprintf(Nachricht, "Fehler beim ï¿½ffnen von %s", Path);
 			throw MyException(Nachricht);
 		}
 		WholeFile = "";
 		WholeFile = WholeFile + "<html>" + "<head><link rel=stylesheet type=\"text/css\" href=\"../style.css\"></head>" + "<body>";
 		
 		
-		//Für die Sortierung
+		//Fï¿½r die Sortierung
 		vector<int> IntSort(AnzahlSpieler);
 		vector<float> FloatSort(AnzahlSpieler);
 		
@@ -2429,7 +2431,7 @@ void Spieler::WriteMapFiles(const char *Pfad)
 		if(!HTMLDatei.open(IO_WriteOnly))
 		{
 			char Nachricht[300];
-			sprintf(Nachricht, "Fehler beim öffnen von %s", Path);
+			sprintf(Nachricht, "Fehler beim ï¿½ffnen von %s", Path);
 			throw MyException(Nachricht);
 		}
 		WholeFile = "";
@@ -2443,7 +2445,7 @@ void Spieler::WriteMapFiles(const char *Pfad)
 		
 
 		int Zaehler = 0;
-		//Tabelle für die Counter
+		//Tabelle fï¿½r die Counter
 		WholeFile = WholeFile + "<table" + TableSettings + "align=center width=70%>";
 		WholeFile = WholeFile + "<tr bgcolor=" + FarbNamen[3] + "><th colspan=4 align=center>" + TableCaptionColor + "Antiterroristen</font></th></tr>";
 		WholeFile = WholeFile + "<tr bgcolor=" + FarbNamen[3] + ">"	
@@ -2472,11 +2474,11 @@ void Spieler::WriteMapFiles(const char *Pfad)
 					sprintf(temp, "---");
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Meiste Ausführung der Aktion
+				//Meiste Ausfï¿½hrung der Aktion
 				sprintf(temp, "%i", MapAwardsNum[z][y]);
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Spieler mit der meisten ausführung
+				//Spieler mit der meisten ausfï¿½hrung
 
 				char temp2[100];
 
@@ -2502,7 +2504,7 @@ void Spieler::WriteMapFiles(const char *Pfad)
 		}
 		WholeFile = WholeFile + "</table>";
 		
-		//Tabelle für die Terrors
+		//Tabelle fï¿½r die Terrors
 //		WholeFile = WholeFile + "<h3 align=center>Terroristen</h3>";		
 		WholeFile = WholeFile + "<table" + TableSettings + "align=center width=70%>";
 		WholeFile = WholeFile + "<tr bgcolor=" + FarbNamen[3] + "><th colspan=4 align=center>" + TableCaptionColor + "Terroristen</font></th></tr>";
@@ -2533,11 +2535,11 @@ void Spieler::WriteMapFiles(const char *Pfad)
 					sprintf(temp, "---");
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Meiste Ausführung der Aktion
+				//Meiste Ausfï¿½hrung der Aktion
 				sprintf(temp, "%i", MapAwardsNum[z][y]);
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Spieler mit der meisten ausführung
+				//Spieler mit der meisten ausfï¿½hrung
 				char temp2[100];
 
 				if(MapAwardsNum[z][y] <= 0)
@@ -2562,7 +2564,7 @@ void Spieler::WriteMapFiles(const char *Pfad)
 		}
 		WholeFile = WholeFile + "</table>";
 		
-		//Tabelle für Allgemein
+		//Tabelle fï¿½r Allgemein
 //		WholeFile = WholeFile + "<h3 align=center>Allgemein</h3>";		
 		WholeFile = WholeFile + "<table" + TableSettings + "align=center width=70%>";
 		WholeFile = WholeFile + "<tr bgcolor=" + FarbNamen[3] + "><th colspan=4 align=center>" + TableCaptionColor + "Allgemein</font></th></tr>";
@@ -2592,11 +2594,11 @@ void Spieler::WriteMapFiles(const char *Pfad)
 					sprintf(temp, "---");
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Meiste Ausführung der Aktion
+				//Meiste Ausfï¿½hrung der Aktion
 				sprintf(temp, "%i", MapAwardsNum[z][y]);
 				WholeFile = WholeFile + "<th>" + temp + "</th>";			
 
-				//Spieler mit der meisten ausführung
+				//Spieler mit der meisten ausfï¿½hrung
 				char temp2[100];
 
 				if(MapAwardsNum[z][y] <= 0)
@@ -2647,7 +2649,7 @@ void Spieler::SortierenachSkill()
 	
 		//Speichert die INDEXE der gerankten Spieler
 		OnlyRankedPlayers.resize(AnzahlSpieler);
-		//Die Schleife prüft welche Spieler in die Wertung mitaufgenommen werden
+		//Die Schleife prï¿½ft welche Spieler in die Wertung mitaufgenommen werden
 		//und speichert dann den Index des Spielers in OnlyRankedPlayers;
 		for(z = 0; z < AnzahlSpieler; z++)
 		{
@@ -2668,7 +2670,7 @@ void Spieler::SortierenachSkill()
 			if(!RequiresIgnore[2])
 				if(Actions[z][1] < Requires[2])
 					Error=true;
-			//Wenn die Nametags den Namen ausschließen
+			//Wenn die Nametags den Namen ausschlieï¿½en
 
 			for(int y = 0; y < NotUsedNamesCount; y++)
 				if((NotUsedNames[y].find(SpielerNamen[z].c_str(), 0)) != -1)
@@ -2693,7 +2695,7 @@ void Spieler::SortierenachSkill()
 			}
 		}
 		
-		//Alle Spieler löschen die nicht den Anforderungen entsprechen
+		//Alle Spieler lï¿½schen die nicht den Anforderungen entsprechen
 /*		if(DeleteUnrankedPeople == 1)
 
 		{
@@ -2866,7 +2868,7 @@ void FileCopy(char *OutName, char *InName)
 		{
 			char temp[500];
 
-			sprintf(temp, "Fehler beim Öffnen der Input-Datei : %s", InName);
+			sprintf(temp, "Fehler beim ï¿½ffnen der Input-Datei : %s", InName);
 			throw MyException(temp);
 		}
 
@@ -2874,7 +2876,7 @@ void FileCopy(char *OutName, char *InName)
 		{
 			char temp[500];
 
-			sprintf(temp, "Fehler beim Öffnen der Output-Datei : %s", OutName);
+			sprintf(temp, "Fehler beim ï¿½ffnen der Output-Datei : %s", OutName);
 			throw MyException(temp);
 		}
 		
@@ -2983,7 +2985,7 @@ void Spieler::SetPvsPCount(int Count)
 	PvsPCount.resize(ANFANGSNAMEN);
 	PvsPKills.resize(ANFANGSNAMEN, vector<int>(MaxPvsPCount));
 	PvsPDeaths.resize(ANFANGSNAMEN, vector<int>(MaxPvsPCount));
-	//Hat die Indexe der Gegner(für die Spielernamen)
+	//Hat die Indexe der Gegner(fï¿½r die Spielernamen)
 	PvsPIndex.resize(ANFANGSNAMEN, vector<int>(MaxPvsPCount));
 	for(int z=0; z < ANFANGSNAMEN; z++)
 		for(int y=0; y < MaxPvsPCount; y++)
@@ -3000,7 +3002,7 @@ void Spieler::NewPvsPKills(int Killer, int Opfer, int n)
 		//Suchen ob das Opfer schon vorhanden ist
 		for(z = 0; z < PvsPCount[Killer]; z++)
 		{
-			//Wenn es vorhanden ist, dann Kills erhöhen und schleife verlassen
+			//Wenn es vorhanden ist, dann Kills erhï¿½hen und schleife verlassen
 			if(PvsPIndex[Killer][z] == Opfer)
 			{
 				PvsPKills[Killer][z] += n;
@@ -3009,11 +3011,11 @@ void Spieler::NewPvsPKills(int Killer, int Opfer, int n)
 			}
 		}
 
-		//Prüfen ob das Opfer schon gefunden wurde
-		//Wenn nicht dann prüfen ob wir noch mehr Gegner in die Statistik aufnehmen können
+		//Prï¿½fen ob das Opfer schon gefunden wurde
+		//Wenn nicht dann prï¿½fen ob wir noch mehr Gegner in die Statistik aufnehmen kï¿½nnen
 		if(!OpferFound && PvsPCount[Killer] < MaxPvsPCount)
 		{
-			//Den Index auf das Opfer setzen, damit er nächtes mal gefunden wird
+			//Den Index auf das Opfer setzen, damit er nï¿½chtes mal gefunden wird
 			PvsPIndex[Killer][PvsPCount[Killer]] = Opfer;
 			PvsPKills[Killer][PvsPCount[Killer]] += n;
 			PvsPCount[Killer]++;
@@ -3022,12 +3024,12 @@ void Spieler::NewPvsPKills(int Killer, int Opfer, int n)
 
 
 
-		//Das ganze nochmal machen aber diesmal für das Opfer...
+		//Das ganze nochmal machen aber diesmal fï¿½r das Opfer...
 
 		//Suchen ob der Killer schon vorhanden ist
 		for(z = 0; z < PvsPCount[Opfer]; z++)
 		{
-			//Wenn er vorhanden ist, dann Deaths erhöhen und schleife verlassen
+			//Wenn er vorhanden ist, dann Deaths erhï¿½hen und schleife verlassen
 			if(PvsPIndex[Opfer][z] == Killer)
 			{
 				PvsPDeaths[Opfer][z] += n;
@@ -3036,11 +3038,11 @@ void Spieler::NewPvsPKills(int Killer, int Opfer, int n)
 			}
 		}
 
-		//Prüfen ob das Opfer schon gefunden wurde
-		//Wenn nicht dann prüfen ob wir noch mehr Gegner in die Statistik aufnehmen können
+		//Prï¿½fen ob das Opfer schon gefunden wurde
+		//Wenn nicht dann prï¿½fen ob wir noch mehr Gegner in die Statistik aufnehmen kï¿½nnen
 		if(!KillerFound && PvsPCount[Opfer] < MaxPvsPCount)
 		{
-			//Den Index auf den Killer setzen, damit er nächtes mal gefunden wird
+			//Den Index auf den Killer setzen, damit er nï¿½chtes mal gefunden wird
 			PvsPIndex[Opfer][PvsPCount[Opfer]] = Killer;
 			PvsPDeaths[Opfer][PvsPCount[Opfer]] += n;
 			PvsPCount[Opfer]++;
@@ -3121,7 +3123,7 @@ void Spieler::NewDamage(const char *Name, const char *Weapon, int Healths, int A
 		if(WeaponID == -1)
 		{
 			char Nachricht[500];
-			sprintf(Nachricht, "Die angeforderte Kill-Abfrage konnte nicht bestätigt werden, da die Waffe: %s nicht existiert!", Weapon);
+			sprintf(Nachricht, "Die angeforderte Kill-Abfrage konnte nicht bestï¿½tigt werden, da die Waffe: %s nicht existiert!", Weapon);
 			throw MyException(Nachricht);
 		}
 		if(KillerTeam == OpferTeam)

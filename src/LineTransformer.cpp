@@ -20,22 +20,24 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
 #include "Spieler.hpp"
-#include <qfile.h>
-#include <qstringlist.h>
+#include "datum.hpp"
 #include "Exception.cpp"
 #include "StrFilter.h"
+
 #include <stdio.h>
-#include <qmessagebox.h>
 #include <string.h>
-#include "datum.hpp"
-#include <qstring.h>
+
+#include <QMessageBox>
+#include <QString>
+#include <QFile>
+#include <Q3StrList>
 
 int StringVorhanden(string *String, const char *ZuSuchen, int Anzahl);
 int StringVorhanden(vector<string> &String, const char *ZuSuchen, int Anzahl);
 
 static string StaticMap = "Unbekannte Map";
 
-//Analysiert die LogDatei und ändert dem entsprechend Players
+//Analysiert die LogDatei und ï¿½ndert dem entsprechend Players
 void FileTransformer(const char *LogFile, Spieler *Players)
 {
 	QFile LogDatei(LogFile);
@@ -52,7 +54,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 		Zeit GameStarted;
 		Datum GameStartedDate;
 		bool GameHasStarted = false;
-		//Anonyme Map setzen, wird später ggf. geändert
+		//Anonyme Map setzen, wird spï¿½ter ggf. geï¿½ndert
 		//Players->SetCurrentMap("Unbekannte Map");
 		Players->SetCurrentMap(StaticMap.c_str());
 		
@@ -87,7 +89,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 					char action[100];
 					strcpy(action, StrFilter(Line, 1, '\"'));
 
-					//Wenn der Name geändert wurde
+					//Wenn der Name geï¿½ndert wurde
 					if(strcmp(action, " changed name to ") == 0)
 					{
 						char *Name, ZuName[100], temp[301];
@@ -118,7 +120,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 
 						Players->NameChange(Name, ZuName);
 
-						//Auch in AktNamen und Gekillt ändern
+						//Auch in AktNamen und Gekillt ï¿½ndern
 
 						int Index;
 						Index = StringVorhanden(AktNamen, Name, AnzahlAkt);
@@ -137,7 +139,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 					//wenn jemand einen anderen Spieler angeschossen hat oder ihn gekillt hat
 					if(strcmp(action, " killed ") == 0 || strcmp(action, " attacked ") == 0)
 					{
-						//Wenn jemand gekillt wurde, hier werden Name, Waffe gefiltert und dann an Spieler::NewKills übergeben
+						//Wenn jemand gekillt wurde, hier werden Name, Waffe gefiltert und dann an Spieler::NewKills ï¿½bergeben
 						char Buffer[300], *temp;
 						char Waffe[50], WasKilledName[50], KillerName[50];
 						int WasKilledTeam, KillerTeam;
@@ -152,7 +154,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 						else
 							WasKilledTeam = 1;
 
-						//Ab hier wird der Name des getöteten Spielers in WasKilledName geschrieben
+						//Ab hier wird der Name des getï¿½teten Spielers in WasKilledName geschrieben
 						strcpy(Buffer, Line);
 						unsigned int Anzahl1 = 0, Offset = 0, nachkilled;
 						int Anzahl2 = 0;
@@ -176,7 +178,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 							if(Anzahl2 == 4)
 							{
         						temp = &Buffer[z+1];
-								//Wird später für den Namens des Killers gebraucht
+								//Wird spï¿½ter fï¿½r den Namens des Killers gebraucht
 								nachkilled = z - 1;
 								break;
 							}     	
@@ -230,7 +232,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 							Players->NewKills(KillerName, WasKilledName, KillerTeam, WasKilledTeam, Waffe, 1);
 						else
 						{
-							//Hier noch den Schaden an Rüstung und Leben filtern
+							//Hier noch den Schaden an Rï¿½stung und Leben filtern
 							int LifeLeech, ArmorLeech;
 							char Life[10], Armor[10], TempLeech[50];
 							
@@ -304,8 +306,8 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 						z=0;
 						bool Found = false;
 
-						//Es wird überprüft ob es eine "gültige" Aktion ist, dann wird der Name
-						//ausgelesen und an Players.NewAction wird der Name, die Aktion und die Anzahl übergeben
+						//Es wird ï¿½berprï¿½ft ob es eine "gï¿½ltige" Aktion ist, dann wird der Name
+						//ausgelesen und an Players.NewAction wird der Name, die Aktion und die Anzahl ï¿½bergeben
 						while(z < AKTIONENANZAHL && !Found)
 						{
 							char *Name;
@@ -315,7 +317,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 							{
 								int y=0, Anzahl=0;
 
-								//Ein temporärer String wird erstellt und die aktuelle Zeile hineinkopiert
+								//Ein temporï¿½rer String wird erstellt und die aktuelle Zeile hineinkopiert
 								//Danach wird nach dem 3. '<' Zeichen gesucht, weil davor der Name steht
 								//Der String wird dort mit '\0' abgeschlossen
 								//Der Name beginnt beim 26. Zeichen, deswegen Name = &temp[26]
@@ -375,7 +377,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 							Players->NewAction(Name, WelchesTeam, 1);
 
 
-						//Spieler zu den aktuellen hinzufügen und Datum + Zeit
+						//Spieler zu den aktuellen hinzufï¿½gen und Datum + Zeit
 						if(StringVorhanden(AktNamen, Name, AnzahlAkt) == -1)
 						{
 							AktNamen.push_back(Name);
@@ -444,8 +446,8 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 						Players->NewAction(BombPlanted.c_str(), "TargetBombed", 1);
 					BombPlanted = "";
 				}
-				//Ändert die AktNamen Liste -> Löscht den Namen, der disconnected hat
-				//Wichtig für die Rundenberechnung
+				//ï¿½ndert die AktNamen Liste -> Lï¿½scht den Namen, der disconnected hat
+				//Wichtig fï¿½r die Rundenberechnung
 				//Berechnet die gespielte Zeit
 				if(strcmp(StrFilterReverse(Line, 1, ' ', 'd' ), "disconnecte") == 0)
 				{
@@ -499,7 +501,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 						AnzahlAkt--;
 						
 					
-						//Löschen
+						//Lï¿½schen
 						zeit.erase(zeit.begin() + Index);
 						datum.erase(datum.begin() + Index);
 						AktNamen.erase(AktNamen.begin() + Index);
@@ -526,7 +528,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 					for(z = 0; z < AnzahlAkt; z++)
 					{
 						Players->NewAction(AktNamen[z].c_str(), "NewRound", 1);
-						//Guckt welcher Spieler überlebt hat
+						//Guckt welcher Spieler ï¿½berlebt hat
 				 		if(StringVorhanden(Gekillt, AktNamen[z].c_str(), AnzahlGekillt) == -1)
 				 		{
 				 			Auslagerung.push_back(AktNamen[z]);
@@ -534,10 +536,10 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 				 		}
 					}
 					
-					//Wenn nur ein SPieler überlebt hat, kriegt er Last man Standing
+					//Wenn nur ein SPieler ï¿½berlebt hat, kriegt er Last man Standing
 					if(AuslagerungAnz == 1)
 						Players->NewAction(Auslagerung[0].c_str(), "LastManStanding", 1);
-					//Alle Spieler die überlebt haben, kriegen ein RoundSurvived gutgeschrieben
+					//Alle Spieler die ï¿½berlebt haben, kriegen ein RoundSurvived gutgeschrieben
 					for(z = 0; z < AuslagerungAnz; z++)
 					{
 						Players->NewAction(Auslagerung[z].c_str(), "RoundSurvived", 1);
@@ -591,7 +593,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 		if(discTime - GameStarted > 0)
 			Players->AddPlayedTimeOnMap(discTime - GameStarted);
 
-		//Spielzeit für die Leute berechnen, die den Server nicht verlassen haben!
+		//Spielzeit fï¿½r die Leute berechnen, die den Server nicht verlassen haben!
 		Datum discDate2(Tag.toInt(), Monat.toInt(), Jahr.toInt());
 		for(int z = 0; z < AnzahlAkt; z++)
 		{			
@@ -611,7 +613,7 @@ void FileTransformer(const char *LogFile, Spieler *Players)
 	{
 		char Nachricht[500];
 		
-		sprintf(Nachricht, "Datei: %s konnte nicht geöffnet werden", LogFile);
+		sprintf(Nachricht, "Datei: %s konnte nicht geï¿½ffnet werden", LogFile);
 		throw MyException(Nachricht);
 	}
 }

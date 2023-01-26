@@ -1,20 +1,21 @@
 #include <string>
 #include <vector>
-#include <qregexp.h>
+
+#include <QRegExp>
 
 using std::string;
 using std::vector;
 
 const int ANFANGSNAMEN = 200, NEWSPACE = 200, WEAPONANZAHL = 24, AKTIONENANZAHL = 35, FLOATAKTIONENANZAHL = 9;
 const int FarbAnzahl = 28, RequiresCount = 4, ANFANGSMAPS = 10, MAPAKTIONENANZAHL = 22, NEWMAPSPACE = 10;
-//Speichert die Anzahl der Sortierungen, die man für Write Player File braucht, um die Spieler
-//Einmal nach Kills, Deaths, KDRate... sortieren zu können
+//Speichert die Anzahl der Sortierungen, die man fï¿½r Write Player File braucht, um die Spieler
+//Einmal nach Kills, Deaths, KDRate... sortieren zu kï¿½nnen
 const int SortCount = 6;
 
 const string Colors[] = {"#001525", "#002232", "black", "#141432", "black", "green", "white",
 "white", "yellow", "white",//0-9 = Farben
 "Courier", "Courier", "Times New Roman", "Courier", "Courier",//10-14 = Schriftart
-"4", "4", "4", "4", "4", //15-19 = Schriftgröße
+"4", "4", "4", "4", "4", //15-19 = Schriftgrï¿½ï¿½e
 "normal","normal","normal","normal","normal", "#333333", "1", "2"//20-24 = Schriftstyle(normal/italic)
 };
 /* 
@@ -59,7 +60,7 @@ struct AKTIONEN
 	const char *AnzeigeText ;
 	bool ShowTotal;
 	int TeamSkill;
-	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehört
+	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehï¿½rt
 	int Status;
 };
 extern AKTIONEN Aktionen[];
@@ -70,7 +71,7 @@ struct FLOATAKTIONEN
 	long style ;
 	const char *AnzeigeText ;
 	bool ShowTotal;
-	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehört
+	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehï¿½rt
 	int Status;
 };
 extern FLOATAKTIONEN FloatAktionen[];
@@ -82,7 +83,7 @@ struct MAPAKTIONEN
 	const char *AnzeigeText ;
 	bool ShowTotal;
 	int TeamSkill;
-	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehört
+	//Zeigt an ob es Allgemein oder zu TS oder zu CT gehï¿½rt
 	int Status;
 };
 extern MAPAKTIONEN MapAktionen[];
@@ -98,7 +99,7 @@ extern MAPAKTIONEN MapAktionen[];
 class Spieler
 {
 private :
-	//Platform spezifisch : anderes Image Verzeichnis für Linux benutzen
+	//Platform spezifisch : anderes Image Verzeichnis fï¿½r Linux benutzen
 	char ImagePath[201];
 
 	int InsgKills;
@@ -114,14 +115,14 @@ private :
 	vector <vector<int> >Actions;
 	vector <vector<float> > FloatActions;
 	vector <string> SpielerNamen;
-	/*Was man für die Schadensanzeige braucht :*/
+	/*Was man fï¿½r die Schadensanzeige braucht :*/
 	vector <vector<int> > DamageHealths;
 	vector <vector<int> > DamageArmor;
 	bool ShowDamage;
 	/*Bis hier hin*/
 	vector <int> Skill;
 	vector <float> KDRate;
-	//Steht die Sortierung der Spieler drin, für die Kills, Deaths, KDRate... siehe SortCount oben
+	//Steht die Sortierung der Spieler drin, fï¿½r die Kills, Deaths, KDRate... siehe SortCount oben
 	vector <vector<int> > Sortierung;
 	vector <int> KillStreakTmp;
 	vector <int> DeathsStreakTmp;
@@ -138,30 +139,30 @@ private :
 	vector <string> PlayerAward;
 	//Speichert die Anzahl mit der der Spieler den Award hat
 	vector <int> NumAward;
-	//Insgesamte Ausführung einer Action
+	//Insgesamte Ausfï¿½hrung einer Action
 	vector <int> CountofAction;
 	
-	//Speichert den Namen der einen Award hat(für die Floataktionen)
+	//Speichert den Namen der einen Award hat(fï¿½r die Floataktionen)
 	vector <string> FloatPlayerAward;
-	//Speichert die Anzahl mit der der Spieler den Award hat(für die Floataktionen)
+	//Speichert die Anzahl mit der der Spieler den Award hat(fï¿½r die Floataktionen)
 	vector <float> FloatNumAward;
-	//Insgesamte Ausführung einer Action
+	//Insgesamte Ausfï¿½hrung einer Action
 	vector <float> FloatCountofAction;
 
 	int RankedPlayers;
 	//beeinhaltet die Indexe der gerankten Spieler
 	vector <int> OnlyRankedPlayers;
 	int LogFiles;
-	//Wenn es 0 ist werden nicht gerankte Spieler nicht gelöscht und in der Statistik ohne Link geschrieben
-	//Wenn es 1 ist werden nicht gerankte Spieler gelöscht und sind somit nicht in der Statistik vorhanden
-	//In beiden Fällen wird keine eigene Spielerdatei von einem nicht gerankten Spieler erstellt.
+	//Wenn es 0 ist werden nicht gerankte Spieler nicht gelï¿½scht und in der Statistik ohne Link geschrieben
+	//Wenn es 1 ist werden nicht gerankte Spieler gelï¿½scht und sind somit nicht in der Statistik vorhanden
+	//In beiden Fï¿½llen wird keine eigene Spielerdatei von einem nicht gerankten Spieler erstellt.
 	int DeleteUnrankedPeople;
 	//Alles was in der Player vs Player Statistik gebraucht wird!
 	//Die aktuelle Anzahl der Gegner, von den einzelnen Spielern
 	vector <int> PvsPCount;
 	vector <vector<int> > PvsPKills;
 	vector <vector<int> > PvsPDeaths;
-	//Hat die Indexe der Gegner(für die Spielernamen)
+	//Hat die Indexe der Gegner(fï¿½r die Spielernamen)
 	vector <vector<int> >PvsPIndex;
 	int MaxPvsPCount;
 	void NewPvsPKills(int Killer, int Opfer, int n);
@@ -172,9 +173,9 @@ private :
 	//Ist eine generische Funktion, die ZuSortieren, sortiert in Output schreibt
 	void Sortiere(vector<int> &Output, vector<int> &ZuSortieren, int Anzahl);
 	void Sortiere(vector<int> &Output, vector<float> *ZuSortieren, int Anzahl);
-	//Findet die Höchste Anzahl eines vectors raus und schreibt den Namen in Player
+	//Findet die Hï¿½chste Anzahl eines vectors raus und schreibt den Namen in Player
 	int Most(vector<int> &Highest, char *Player, int Element);
-	//Findet die Höchste Anzahl eines vectors raus und schreibt den Namen in Player
+	//Findet die Hï¿½chste Anzahl eines vectors raus und schreibt den Namen in Player
 	float Most(vector<float> &Highest, char *Player, int Element);
 
 
@@ -205,7 +206,7 @@ private :
 	vector<int> Requires;
 	vector<bool> RequiresIgnore;
 
-	//Alles für die Maps
+	//Alles fï¿½r die Maps
 	vector <string> MapNames;
 	int MapCount, CurrentMap, SpaceForMaps;
 	int WelcheMap(const char *Map);
@@ -222,7 +223,7 @@ private :
 
 	void NewMap(const char *Map);
 
-	//Speichert die NamenTags, die NICHT benutzt werden dürfen
+	//Speichert die NamenTags, die NICHT benutzt werden dï¿½rfen
 	vector <QRegExp> NotUsedNames;
 	int NotUsedNamesCount;
 	
@@ -232,7 +233,7 @@ private :
 	void SortierenachSkill();
 	void DeletePlayer(int Index);
 	
-	//Wird benötigt damit man Spieler zusammenfügen kann, das ganze passiert unter WelcherSpieler
+	//Wird benï¿½tigt damit man Spieler zusammenfï¿½gen kann, das ganze passiert unter WelcherSpieler
 	vector <string> BasePlayers;
 	vector <string> JoinPlayers;
 	int CombineCount;
@@ -246,9 +247,9 @@ public :
 	inline void GetSpieler(char *Buffer, int Welcher);
 	void NewKills(const char *Killer, const char *Opfer, int KillerTeam, int OpferTeam, const char *Weapon, int n);
 	int GetKills(char *Player, char *Weapon);
-	//Liefert den Index der Waffe zurück
+	//Liefert den Index der Waffe zurï¿½ck
 	inline int WelcheWaffe(const char *Waffe);
-	//Liefert den Index der Aktion zurück
+	//Liefert den Index der Aktion zurï¿½ck
 	inline int WelcheAktion(const char *Aktion);
 	inline int WelcheMapAktion(const char *MapAktion);
 	inline int WelcheFloatAktion(const char *Aktion);
@@ -258,7 +259,7 @@ public :
 	//Awards, PlayerRanks und Index-Datei
 	void WritePlayerHTML(const char *Pfad, int Logdateien);
 	//void SortierenachKDRate();
-	//Liefert die meisten Kills dieser Waffe zurück und schreibt den Namen in Player
+	//Liefert die meisten Kills dieser Waffe zurï¿½ck und schreibt den Namen in Player
 	int MostWeaponKills(const char *Weapon);
 	int MostWeaponKills(const char *Weapon, char *Player);
 	inline void NewAction(const char *Player, const char *Action, int n);

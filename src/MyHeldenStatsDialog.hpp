@@ -5,7 +5,8 @@
 
 #include <vector>
 #include <string.h>
-#include <qcheckbox.h>
+
+#include <QCheckBox>
 
 using std::vector;
 using std::string;

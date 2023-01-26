@@ -23,14 +23,15 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include "linetransformer.hpp"
 #include "Exception.cpp"
 #include "StrFilter.h"
-#include <qmessagebox.h>
-#include <qfiledialog.h>
-#include <qstringlist.h>
-#include <qlabel.h>
-#include <qregexp.h>
-#include <qtabwidget.h>
-#include <qdatetime.h>
-#include <qprogressbar.h>
+
+#include <QMessageBox>
+#include <QFileDialog>
+#include <Q3StrList>
+#include <QLabel>
+#include <QRegExp>
+#include <QTabWidget>
+#include <QDateTime>
+#include <Q3ProgressBar>
 
 Spieler *Players = new Spieler; 
 
@@ -47,7 +48,7 @@ Spieler *Players = new Spieler;
 9 = HoverLink
 */
 
-//Für den Timer zuständig
+//Fï¿½r den Timer zustï¿½ndig
 int Zeit = 0;
 bool Messages=true;
 
@@ -123,7 +124,7 @@ void MyHeldenStats::SelectLogFiles()
 {
 	//ReadDirs();	
 	QStringList LogFiles = QFileDialog::getOpenFileNames ( "Log Dateien(*.log)", InputDir,
-		this, "", "Bitte die Logdateien auswählen" );
+		this, "", "Bitte die Logdateien auswï¿½hlen" );
 
 	if(LogFiles.count() > 0)
 	{
@@ -154,7 +155,7 @@ void MyHeldenStats::SelectOutputDir()
 	//Die letzten Verzeichnisse lesen aus der Configdatei(falls vorhanden)
 	if(ConfigFile.open(IO_ReadOnly))
 	{
-		//Zweite Linie enthält das OutputDir
+		//Zweite Linie enthï¿½lt das OutputDir
 		ConfigFile.readLine(OutputPath, 200);
 		ConfigFile.readLine(OutputPath, 200);
 		ConfigFile.close();
@@ -180,18 +181,18 @@ void MyHeldenStats::CreateHTML()
 		{
 			if(Messages)
 			{
-				QMessageBox::critical(this, "Fehler", "Bitte das Output Verzeichnis auswählen");
+				QMessageBox::critical(this, "Fehler", "Bitte das Output Verzeichnis auswï¿½hlen");
 			}
 		}
 		else
 			if(LogDateienListe->count() == 0)
 			{
 				if(Messages)
-					QMessageBox::critical(this, "Fehler", "Bitte Logdateien auswählen");
+					QMessageBox::critical(this, "Fehler", "Bitte Logdateien auswï¿½hlen");
 			}
 			else
 			{
-				//Kein Fehler -> Öffne die LogDateien und schreibe die HTML Files
+				//Kein Fehler -> ï¿½ffne die LogDateien und schreibe die HTML Files
 				char Bild[100];
 
 				if(Players->CheckForPics(Bild))
@@ -203,7 +204,7 @@ void MyHeldenStats::CreateHTML()
 
 
 					unsigned int z;								
-					//Setzt die Spieler, die zusammengefügt werden müssen
+					//Setzt die Spieler, die zusammengefï¿½gt werden mï¿½ssen
 					for(z = 0; z < CombinedPlayers->count(); z++)
 					{
 						char NameString[200], Name1[100], Name2[100];
@@ -240,7 +241,7 @@ void MyHeldenStats::CreateHTML()
 
 					int LogAnzahl=0; 
 
-					//Vorher die Logdateien zählen für die Progressbar!
+					//Vorher die Logdateien zï¿½hlen fï¿½r die Progressbar!
 					for(z = 0; z < LogDateienListe->count(); z++)
 					{
 						QString Datei = LogDateienListe->text(z);
@@ -337,7 +338,7 @@ void MyHeldenStats::CreateHTML()
 				else
 				{
 					char Nachricht[200];
-					sprintf(Nachricht, "Das Bild : %s konnte nicht gefunden werden, überprüfen sie bitte ob es vorhanden ist!", Bild);
+					sprintf(Nachricht, "Das Bild : %s konnte nicht gefunden werden, ï¿½berprï¿½fen sie bitte ob es vorhanden ist!", Bild);
 					QMessageBox::critical(this, "Fehler", Nachricht);
 				}
 			}
@@ -453,7 +454,7 @@ void MyHeldenStats::WriteDirs()
 		ConfigFile.close();
 	}
 	else
-		throw MyException("Fehler beim Öffnen der Config Datei!");
+		throw MyException("Fehler beim ï¿½ffnen der Config Datei!");
 }
 
 void MyHeldenStats::ReadDirs()
@@ -486,7 +487,7 @@ void MyHeldenStats::ReadDirs()
 			}
 			int z;
 
-			//Für PvsP
+			//Fï¿½r PvsP
 			ConfigFile.readLine(LogPath, 200);
 			LogPath[strlen(LogPath)-1] = '\0';
 			MaxPvsP->setText(LogPath);
@@ -563,7 +564,7 @@ void MyHeldenStats::ReadDirs()
 					{
 						LogPath[strlen(LogPath)-1] = '\0';
 					}
-					Beide = Beide + LogPath + "\" hinzugefügt.";
+					Beide = Beide + LogPath + "\" hinzugefï¿½gt.";
 					CombinedPlayers->insertItem(Beide.c_str());
 				}
 			}
@@ -646,7 +647,7 @@ void MyHeldenStats::DelFiles()
 }
 
 
-//Fügt einen neuen NameTag hinzu
+//Fï¿½gt einen neuen NameTag hinzu
 void MyHeldenStats::NewNameTag()
 {
 	char NeuerName[300];
@@ -659,7 +660,7 @@ void MyHeldenStats::NewNameTag()
 	}
 }
 
-//Löscht die ausgewählten Namen aus der Liste
+//Lï¿½scht die ausgewï¿½hlten Namen aus der Liste
 void MyHeldenStats::DeleteNameTag()
 {	
 	int Deleted = 0, Count = Namen->count();
@@ -701,13 +702,13 @@ void MyHeldenStats::Combine()
 	if(Namen[1] == "")
 	{
 		Error = true;
-		Nachricht = "Sie müssen in das zweite Eingabefeld etwas eintragen!";
+		Nachricht = "Sie mï¿½ssen in das zweite Eingabefeld etwas eintragen!";
 	}
 
 	if(Namen[0] == "")
 	{
 		Error = true;
-		Nachricht = "Sie müssen in das erste Eingabefeld etwas eintragen!";
+		Nachricht = "Sie mï¿½ssen in das erste Eingabefeld etwas eintragen!";
 	}
 
 	for(int z = 0; z < 2; z++)
@@ -716,7 +717,7 @@ void MyHeldenStats::Combine()
 		{
 			if(Namen[z][y] == '\"')
 			{
-				Nachricht = "Es dürfen keine \" im Namen sein!";
+				Nachricht = "Es dï¿½rfen keine \" im Namen sein!";
 				Error=true;
 			}
 		}
@@ -724,7 +725,7 @@ void MyHeldenStats::Combine()
 
 	if(!Error)
 	{
-		Beide = "Spieler: \"" + Namen[1] + "\"" + " wird zu " + "Spieler: \"" + Namen[0] + "\"" + " hinzugefügt.";
+		Beide = "Spieler: \"" + Namen[1] + "\"" + " wird zu " + "Spieler: \"" + Namen[0] + "\"" + " hinzugefï¿½gt.";
 		CombinedPlayers->insertItem(Beide.c_str());
 	}
 	else
